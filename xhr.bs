@@ -822,6 +822,8 @@ return <a>this</a>'s <a>cross-origin credentials</a>.
     <p>Let <var>processRequestBodyChunkLength</var>, given a <var>bytesLength</var>, be these steps:
 
     <ol>
+     <li><p>If <a>this</a>'s <a>upload complete</a> is true, then return.
+
      <li><p>Increase <var>requestBodyTransmitted</var> by <var>bytesLength</var>.
 
      <li><p>If not roughly 50ms have passed since these steps were last invoked, then return.
@@ -829,7 +831,6 @@ return <a>this</a>'s <a>cross-origin credentials</a>.
      <li><p>If <a>this</a>'s <a>upload listener</a> is true, then <a>fire a progress event</a>
      named <a event><code>progress</code></a> at <a>this</a>'s <a>upload object</a> with
      <var>requestBodyTransmitted</var> and <var>requestBodyLength</var>.
-     <!-- upload complete can never be true here I hope -->
     </ol>
 
     <p class=note>These steps are only invoked when new bytes are transmitted.
@@ -838,6 +839,8 @@ return <a>this</a>'s <a>cross-origin credentials</a>.
     <p>Let <var>processRequestEndOfBody</var> be these steps:
 
     <ol>
+     <li><p>If <a>this</a>'s <a>upload complete</a> is true, then return.
+
      <li><p>Set <a>this</a>'s <a>upload complete</a> to true.
 
      <li><p>If <a>this</a>'s <a>upload listener</a> is false, then return.
@@ -851,7 +854,6 @@ return <a>this</a>'s <a>cross-origin credentials</a>.
      <li><p><a>Fire a progress event</a> named <a event><code>loadend</code></a> at <a>this</a>'s
      <a>upload object</a> with <var>requestBodyTransmitted</var> and <var>requestBodyLength</var>.
     </ol>
-    <!-- upload complete can never be true here I hope -->
 
    <li>
     <p>Let <var>processResponse</var>, given a <var>response</var>, be these steps:
